@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<head>
+
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+
+
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+
+<script type="text/babel">
+    // NOTE TypeProps 
+    // https://ko.reactjs.org/docs/typechecking-with-proptypes.html
+    function Btn({name, fontSize = 14, onClick}){
+        return (
+            <button 
+                style={{ 
+                    backgroundColor:"orange",
+                    color :"white",
+                    padding: "10px",
+                    fontSize
+                }}
+                onClick={onClick}
+            >
+                {name}
+            </button>
+        )
+    }
+    Btn.propTypes = {
+        name: PropTypes.string,
+        fontSize: PropTypes.number.isRequired
+    }
+    // App 내부의 element update 발생 시 전체를 다시 렌더링 하는 현상을 막기 위해 Memo 사용
+    const MemoriszeBtn = React.memo(Btn);
+    function App() {
+        const [value  , setter] = React.useState("TEST value");
+        const changeValue = () => setter("Changed Value");
+        return (
+            <div>
+                <MemoriszeBtn name={value} fontSize={10} onClick={changeValue} />
+                <MemoriszeBtn name="Bt2" fontSize={20} />
+
+            </div>
+        )
+    }
+
+    ReactDOM.render(<App />, root); 
+</script>
+
+</html>
