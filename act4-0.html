@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<head>
+
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+
+
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<script type="text/babel">
+    function Btn({name}){
+        console.log({name});
+        return (
+            <button 
+                style={{ 
+                    "backgroundColor":"orange",
+                    "color" :"white",
+                    "padding": "10px"
+                }}
+            >
+                {name}
+            </button>
+        )
+    }
+    function App() {
+        return (
+            <div>
+                <Btn name="Bt1"/>
+                <Btn name="Bt2"/>
+                <Btn />
+
+            </div>
+        )
+    }
+
+    ReactDOM.render(<App />, root); 
+</script>
+
+</html>
