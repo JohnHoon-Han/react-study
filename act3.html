@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<head>
+
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+
+
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<script type="text/babel">
+    let clickCount = 0;
+    let enterCount = 0;
+    
+
+
+    const root = document.getElementById("root");
+    const Title = () =>  (
+        <h3>Wellcomto React Study!</h3>
+    );
+    
+    const Counter = () => {
+        return (
+        <h5>
+            <div>
+                Enter Count is {enterCount}
+            </div>
+            <div>
+                Click Count is {clickCount}
+            </div>
+        </h5>           
+        );
+    }
+    const Button = () => {
+        
+        
+        const [counter, modifier] = React.useState(clickCount); 
+        // console.log(counter, modifier);
+        const onEnter = () => {
+            console.log(counter);
+            modifier(counter + 1 )
+        }
+        return (
+            <div>
+                <h3>Enter Count { counter} </h3>
+            <button 
+                onMouseEnter = {onEnter}
+                onClick={
+                    () => {
+                        clickCount++;
+                    }
+                }>
+                ClickMe
+            </button>
+            </div>
+            );
+        };
+
+    const Container = () => (
+        <div>
+            <Title />
+            <Button />
+            
+        </div>
+    );
+
+    ReactDOM.render(<Container />, root); 
+</script>
+
+</html>
